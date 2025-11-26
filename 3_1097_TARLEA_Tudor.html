@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vizualizare Date Eurostat</title>
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="3_1097_TARLEA_Tudor.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vizualizare Date Pib / Speranta de Viata/Populatie</h1>
+      <p>Aplicatie web pentru vizualizarea datelor Eurostat pentru tarile EU</p>
+    </header>
+
+    <main>
+      <!-- User selects indicator, country and year -->
+      <section id="controls">
+        <h2>Setari Vizualizare</h2>
+
+        <!-- Indicator selection (GDP, Life Expactancy, Population) -->
+        <div>
+          <label for="indicatorSelect">Selecteaza Indicator:</label>
+          <select id="indicatorSelect">
+            <!-- Options will be populated from JS -->
+          </select>
+        </div>
+
+        <!-- Country selection -->
+        <div class="control-group">
+          <label for="countrySelect">Selecteaza Tara:</label>
+          <select id="countrySelect">
+            <!-- Options will be populated from JS -->
+          </select>
+        </div>
+
+        <!-- Year selection -->
+        <div class="control-group">
+          <label for="yearSelect">Selecteaza Anul:</label>
+          <select id="yearSelect">
+            <!-- Options will be populated from JS -->
+          </select>
+        </div>
+
+        <!-- Animation Controls for bubble Chart -->
+        <div class="control-group">
+          <button id="playButton">Play</button>
+          <button id="pauseButton">Pause</button>
+        </div>
+      </section>
+
+      <!-- Charts section -->
+      <section id="charts">
+        <!-- SVG chart for evolution of one indicator for one country -->
+        <div class="chart-container">
+          <h2>Evolutia Indicatorului (grafic SVG)</h2>
+          <svg id="svgChart" width="800" height="400">
+            <!-- SVG elements will be populated from JS -->
+          </svg>
+          <!-- Tooltip for displaying data on hover -->
+          <div id="svgTooltip" class="tooltip" hidden>
+            <!-- Fill this with years and values with JS -->
+          </div>
+        </div>
+        <!-- Bubble chart using canvas -->
+        <div class="chart-container">
+          <h2>Bubble Chart (canvas)</h2>
+          <canvas id="bubbleCanvas" width="800" height="400">
+            Browserul tau nu suporta elementul canvas.
+          </canvas>
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section id="tableSection">
+        <h2>Tabel indicatori pentru anul selectat</h2>
+        <!-- Tabel will be filled from JS -->
+        <div class="table-wrapper">
+          <table id="dataTable">
+            <thead>
+              <!-- JS will populate table headers here -->
+            </thead>
+            <tbody>
+              <!-- JS will populate table rows here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Proiect Multimedia &mdash; Tema3 &mdash; Tudor Tarlea 1097</p>
+    </footer>
+
+    <!-- Link to external JS file -->
+    <script src="3_1097_TARLEA_Tudor.js"></script>
+  </body>
+</html>
