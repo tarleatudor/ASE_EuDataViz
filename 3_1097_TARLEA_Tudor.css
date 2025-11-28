@@ -1,0 +1,264 @@
+/* Variabile pentru Light Mode 
+    -Modul Light mode e default
+    -Toate culorile sunt stocate in variabile CSS pentru o mai usoara gestionare
+*/
+
+:root{
+--bg-color:whitesmoke;
+--text-color:black;
+--card-bg:white;
+
+--header-gradient-start:navy;
+--header-gradient-end:royalblue;
+
+--primary-color:navy;
+--primary-color-dark:midnightblue;
+
+--border-color: lightgray;
+--surface-muted:white;
+--table-row-alt:lavender;
+
+--shadow-soft: 0px 4px 12px lightgray;
+}
+
+/* Variabile DarkMode
+ -Atunci cand body are atributul data-theme="dark"
+ -Suprascriem toate variabilele cu varianta intunecata */
+
+ body[data-theme="dark"] {
+    --bg-color:black;
+    --text-color:white;
+    --card-bg:black;
+
+    --header-gradient-start:black;
+    --header-gradient-end:darkslategray;
+
+    --primary-color:lightblue;
+    --primary-color-dark:deepskyblue;
+
+    --border-color:gray;
+    --surface-muted:black;
+    --table-row-alt:#111;
+
+    --shadow-soft: 0px 4px 18px black;
+}
+
+/* Stiluri generale */
+
+body{
+    margin:0;
+    padding:0;
+
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Header */
+
+header{
+    position:relative;
+    background: linear-gradient(
+        135deg,
+        var(--header-gradient-start),
+        var(--header-gradient-end)
+    );
+
+    padding:35px 20px;
+    text-align:center;
+    color:white;
+}
+
+header h1 {
+    margin:0;
+    font-size:32px;
+    font-weight:bold;
+}
+
+header p {
+    margin-top: 10px;
+}
+
+/* Theme Toggle Button (soare/luna)*/
+
+#themeToggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 42px;
+    height:42px;
+    border-radius:50%;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color: white;
+    color:gold;
+    box-shadow: 0 2px 8px gray;
+    cursor:pointer;    
+}
+
+#themeToggle:hover{
+    transform:translateY(-2px); 
+}
+
+.icon-moon,
+.icon-sun {
+    font-size: 20px;
+}
+
+/* Luna ascunsa implicit in light mode */
+
+.icon-moon {
+    display: none;
+}
+
+/* In dark mode butonul devine negru inconitele se inverseaza */
+
+body[data-theme="dark"] #themeToggle {
+    background-color: black;
+    color: white;
+}
+
+/* Ascundem Soarele in DarkMode */
+body[data-theme="dark"] .icon-sun {
+    display: none;
+}
+
+/* Aratam Luna in DarkMode */
+body[data-theme="dark"] .icon-moon {
+    display: inline;
+}
+
+/* Layout Principal al paginii */
+main{
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* Carduri pentru continut */
+
+#controls,
+.chart-container,
+#tableSection .table-wrapper{
+    background-color: var(--card-bg);
+    padding:25px;
+    border-radius:14px;
+    margin-bottom:35px;
+    box-shadow:var(--shadow-soft);
+    transition:background-color 0.25s ease;
+
+}
+
+section > h2,
+.chart-container h2{
+    margin-top:0;
+    color: var(--primary-color);
+}
+
+/* Form Controls (labels + selecturi) */
+
+.control-group{
+    margin-bottom:18px;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+label {
+    margin-bottom: 6px;
+    color:var(--text-color);
+}
+
+select{
+    padding:10px;
+    border-radius:10px;
+    border: 1px solid var(--border-color);
+    background: var(--surface-muted);
+    transition: 0.2s;
+    color: var(--text-color);
+
+}
+
+select:focus{
+    border-color: var(--primary-color);
+    background: var(--card-bg);
+}
+
+/* Butoane */
+
+button:not(#themeToggle){
+    padding: 10px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background-color: var(--primary-color);
+    color:white;
+    font-weight:bold;
+    transition: 0.2s;
+    margin: 10px 20px 10px 0;
+}
+
+button:not(#themeToggle):hover{
+    background-color: var(--primary-color-dark);
+}
+
+/* SVG si Canvas */
+
+svg,
+canvas{
+    background: var(--surface-muted);
+    border: 1px solid var(--border-color);
+    border-radius:10px;
+}
+
+/* ToolTip pentru grafic SVG */
+
+.tooltip{
+    position: absolute;
+    background: black;
+    color: white;
+    padding: 8px 12px;
+    border-radius:8px;
+    pointer-events: none;
+    transform: translate(-50%, -130%);
+    opacity: 0.9;
+}
+
+/* Tabelul */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    border-radius:12px;
+    background:var(--card-bg);
+}
+
+th{
+    background: var(--primary-color);
+    color:white;
+    padding: 12px;
+}
+
+td{
+    padding:10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tr:nth-child(even){
+    background: var(--table-row-alt);
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:gray;
+}
