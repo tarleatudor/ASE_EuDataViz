@@ -21,7 +21,7 @@ function setTheme(theme) {
 
 
 // ====================================================
-// 2. CONSTANTE ȘI STARE GLOBALĂ (date, selecții, elemente DOM)
+// 2. CONSTANTE SI STARE GLOBALA (date, selectii, elemente DOM)
 // ====================================================
 
 const EU_COUNTRIES = [
@@ -71,8 +71,8 @@ function initControls() {
   // Indicatori disponibili
   const indicatorLabels = {
     gdp: "PIB pe cap de locuitor",
-    life: "Speranță de viață",
-    pop: "Populație"
+    life: "Speranta de viata",
+    pop: "Populatie"
   };
 
   indicatorSelect.innerHTML = "";
@@ -117,7 +117,7 @@ function initControls() {
 
 
 // ====================================================
-// 4. ÎNCĂRCARE DATE DIN eurostat.json
+// 4. INCARCARE DATE DIN eurostat.json
 // ====================================================
 
 async function loadAllData() {
@@ -131,6 +131,7 @@ async function loadAllData() {
 
     years = getAvailableYears();
     years.sort((a, b) => a - b);
+    years = years.slice(-15);
 
     currentYear = years[years.length - 1];
 
@@ -141,8 +142,8 @@ async function loadAllData() {
     renderTable();
 
   } catch (err) {
-    console.error("Eroare încărcare date:", err);
-    alert("Nu pot încărca eurostat.json.");
+    console.error("Eroare incarcare date:", err);
+    alert("Nu pot incarca eurostat.json.");
   }
 }
 
@@ -193,7 +194,7 @@ function populateYearSelect() {
 
 
 // ====================================================
-// 5. SVG – GRAFIC EVOLUȚIE
+// 5. SVG – GRAFIC EVOLUTIE
 // ====================================================
 
 function drawSvgChart() {
@@ -248,7 +249,7 @@ function drawSvgChart() {
       const e = data[currentCountry][p.year];
 
       svgTooltip.innerHTML = `
-        <strong>${currentCountry} – ${p.year}</strong><br>
+        <strong>${currentCountry} - ${p.year}</strong><br>
         PIB/loc: ${e.gdp ?? "n/a"}<br>
         SV: ${e.life ?? "n/a"}<br>
         Pop: ${e.pop ?? "n/a"}
@@ -338,7 +339,7 @@ function drawBubbleChart() {
 
 
 // ====================================================
-// 7. ANIMAȚIE BUBBLE CHART
+// 7. ANIMATIE BUBBLE CHART
 // ====================================================
 
 function startBubbleAnimation() {
@@ -365,7 +366,7 @@ function stopBubbleAnimation() {
 
 
 // ====================================================
-// 8. TABEL COLORAT ROȘU → VERDE
+// 8. TABEL COLORAT ROSU -> VERDE
 // ====================================================
 
 function renderTable() {
@@ -377,7 +378,7 @@ function renderTable() {
   if (!currentYear) return;
 
   const header = document.createElement("tr");
-  ["Țara", "PIB/locuitor", "Speranță de viață", "Populație"].forEach(text => {
+  ["Tara", "PIB/locuitor", "Speranta de viata", "Populatie"].forEach(text => {
     const th = document.createElement("th");
     th.textContent = text;
     header.appendChild(th);
